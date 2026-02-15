@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー管理</title>
+</head>
+<body>
+    <table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed">
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>名前（LINE）</th>
+            <th>作成日時</th>
+            <th>編集</th>
+        </tr>
+        <tr th:each="obj : ${list}" align="center">
+			<td th:text="${obj.member_id}"></td>
+			<td th:text="${obj.name}"></td>
+			<td th:text="${obj.line_name}"></td>
+			<td th:text="${obj.created_at}"></td>
+			<!-- 編集ボタン -->
+			<td>
+				<form method="get" th:action="@{members/{id}(id=${obj.member_id})}">
+					<input type="submit" value="編集">
+				</form>
+			</td>
+		</tr>
+    </table>
+    <form method="post"
+        th:action="${membersForm.NewMember}? @{/members/insert} : @{/members/update}"
+        th:object="${membersForm}">
+        <hr>
+        <label>ID　：</label>
+        <input type="number" th:field="*{member_id}">
+        <br>
+        <label>名前：</label>
+        <input type="text" th:field="*{name}">
+        <br>
+        <label>名前(LINE)：</label>
+        <input type="text" th:field="*{line_name}">
+        <br>
+        <input type="submit" value="送信">
+	</form>
+    <!-- 追加部分 -->
+    <p th:unless="${membersForm.NewMember}">
+		<a href="#" th:href="@{/members}">一覧画面へ戻る</a>
+	</p>
+</body>
+</html>
