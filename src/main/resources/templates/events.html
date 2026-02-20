@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベント管理</title>
+</head>
+<body>
+    <table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed">
+        <tr>
+            <th>ID</th>
+            <th>開催日</th>
+            <th>場所</th>
+            <th>費用</th>
+            <th>開催</th>
+            <th>備考</th>
+        </tr>
+        <tr th:each="obj : ${list}" align="center">
+			<td th:text="${obj.event_id}"></td>
+			<td th:text="${obj.event_date}"></td>
+			<td th:text="${obj.location}"></td>
+			<td th:text="${obj.facility_cost}"></td>
+			<td th:text="${obj.is_held} ? 開催 : キャンセル"></td>
+			<td th:text="${obj.notes}"></td>
+		</tr>
+    </table>
+</body>

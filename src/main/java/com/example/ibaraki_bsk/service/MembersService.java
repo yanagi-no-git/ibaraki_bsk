@@ -14,7 +14,7 @@ public interface MembersService {
 	 */
     Optional<Members> selectOneById(Integer member_id);
 
-    void save(Members members);
+    void save(Members member);
 
-    void updateMember(Members members);
+    void updateMember(Members member);
 }

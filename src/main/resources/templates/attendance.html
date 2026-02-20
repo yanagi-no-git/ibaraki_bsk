@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出欠管理</title>
+</head>
+<body>
+    <table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed">
+        <tr>
+            <th>イベントID</th>
+            <th>メンバーID</th>
+            <th>支払い</th>
+        </tr>
+        <tr th:each="obj : ${list}" align="center">
+			<td th:text="${obj.event_id}"></td>
+			<td th:text="${obj.member_id}"></td>
+			<td th:text="${obj.is_paid} ? 支払済み : 未払い "></td>
+		</tr>
+    </table>
+</body>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>収支管理</title>
+</head>
+<body>
+    <table border="1" th:unless="${#lists.isEmpty(list)}" style="table-layout: fixed">
+        <tr>
+            <th>ID</th>
+            <th>日時</th>
+            <th>タイトル</th>
+            <th>カテゴリ</th>
+            <th>金額</th>
+            <th>備考</th>
+        </tr>
+        <tr th:each="obj : ${list}" align="center">
+			<td th:text="${obj.finance_id}"></td>
+			<td th:text="${obj.transaction_date}"></td>
+			<td th:text="${obj.title}"></td>
+			<td th:text="${obj.category}"></td>
+			<td th:text="${obj.amount}"></td>
+			<td th:text="${obj.notes}"></td>
+		</tr>
+    </table>
+</body>

@@ -36,5 +36,4 @@ public class MembersServiceImpl implements MembersService{
 	public void updateMember(Members member) {
 		repository.save(member);
 	}
-    
 }
